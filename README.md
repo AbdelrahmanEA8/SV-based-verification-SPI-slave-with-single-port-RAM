@@ -1,5 +1,7 @@
 # SV-based-verification-SPI-slave-with-single-port-RAM
 ## 📝 Overview & DUT
+### Architecture
+![Architecture](./Docs/SPI_drawio.png)
 ### Plan Overview
 This section provides a high-level summary of the verification project. The primary goal is to ensure the functional correctness and protocol compliance of the SPI Slave DUT, which uses an internal asynchronous RAM. This interactive plan outlines the strategy, environment, and specific tests required to achieve comprehensive verification.
 ### Key Features to Verify
