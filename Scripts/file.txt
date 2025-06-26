@@ -1,0 +1,11 @@
+shared_pkg.sv
+SPI_slave.v
+RAM.v
+SPI_wrapper.sv
+SPI_wrapper.v
+SPI_interface.sv
+SPI_seq_item.sv
+SPI_coverage.sv
+SPI_monitor.sv
+SPI_testbench.sv
+SPI_TopModule.sv

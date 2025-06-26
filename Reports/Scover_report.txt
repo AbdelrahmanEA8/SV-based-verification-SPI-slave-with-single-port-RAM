@@ -1,0 +1,822 @@
+Coverage Report by file with details
+
+=================================================================================
+=== File: RAM.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         9         8         1    88.88%
+
+================================Branch Details================================
+
+Branch Coverage for file RAM.v --
+
+------------------------------------IF Branch------------------------------------
+    19                                     22555     Count coming in to IF
+    19              1                       4960             if (!rst_n) begin
+    23              1                      17595             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    24                                     17595     Count coming in to IF
+    24              1                       7747                 if (rx_valid) begin
+    43              1                       9848                 end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    25                                      7747     Count coming in to CASE
+    26              1                       3508                         2'b00: begin 
+    30              1                       1911                         2'b01: begin 
+    34              1                       1444                         2'b10: begin 
+    38              1                        884                         2'b11: begin 
+                                         ***0***     All False Count
+Branch totals: 4 hits of 5 branches = 80.00%
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      13        13         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file RAM.v --
+
+    1                                                module RAM #(
+    2                                                    parameter MEM_DEPTH = 256,
+    3                                                              MEM_WIDTH = 8
+    4                                                )(
+    5                                                
+    6                                                    input   [MEM_WIDTH+1:0]     din,
+    7                                                    input                       rx_valid,
+    8                                                    input                       clk,
+    9                                                    input                       rst_n,
+    10                                               
+    11                                                   output reg [MEM_WIDTH-1:0]  dout,
+    12                                                   output reg                  tx_valid
+    13                                               );
+    14                                               
+    15                                                   reg [MEM_WIDTH-1:0] MEM [0:MEM_DEPTH-1];
+    16                                                   reg [MEM_WIDTH-1:0] ADDR;
+    17                                               
+    18              1                      22555         always @(posedge clk or negedge rst_n) begin
+    19                                                       if (!rst_n) begin
+    20              1                       4960                 dout <= 8'b0;
+    21              1                       4960                 tx_valid <= 1'b0;
+    22              1                       4960                 ADDR <= 8'b0;
+    23                                                       end else begin
+    24                                                           if (rx_valid) begin
+    25                                                               case (din[9:8])
+    26                                                                   2'b00: begin 
+    27              1                       3508                             ADDR <= din[MEM_WIDTH-1:0];
+    28              1                       3508                             tx_valid <= 1'b0;
+    29                                                                   end
+    30                                                                   2'b01: begin 
+    31              1                       1911                             MEM[ADDR] <= din[MEM_WIDTH-1:0];
+    32              1                       1911                             tx_valid <= 1'b0;
+    33                                                                   end
+    34                                                                   2'b10: begin 
+    35              1                       1444                             ADDR <= din[MEM_WIDTH-1:0];
+    36              1                       1444                             tx_valid <= 1'b0;
+    37                                                                   end
+    38                                                                   2'b11: begin 
+    39              1                        884                             dout <= MEM[ADDR];
+    40              1                        884                             tx_valid <= 1'b1;
+    41                                                                   end
+    42                                                               endcase
+    43                                                           end else begin
+    44              1                       9848                     tx_valid <= 1'b0;
+    45                                                           end
+    46                                                       end
+    47                                                   end
+    48                                               endmodule
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         60        60         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File RAM.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+          6                                 din[9]           1           1      100.00 
+          6                                 din[8]           1           1      100.00 
+          6                                 din[7]           1           1      100.00 
+          6                                 din[6]           1           1      100.00 
+          6                                 din[5]           1           1      100.00 
+          6                                 din[4]           1           1      100.00 
+          6                                 din[3]           1           1      100.00 
+          6                                 din[2]           1           1      100.00 
+          6                                 din[1]           1           1      100.00 
+          6                                 din[0]           1           1      100.00 
+          7                               rx_valid           1           1      100.00 
+          8                                    clk           1           1      100.00 
+          9                                  rst_n           1           1      100.00 
+         11                                dout[7]           1           1      100.00 
+         11                                dout[6]           1           1      100.00 
+         11                                dout[5]           1           1      100.00 
+         11                                dout[4]           1           1      100.00 
+         11                                dout[3]           1           1      100.00 
+         11                                dout[2]           1           1      100.00 
+         11                                dout[1]           1           1      100.00 
+         11                                dout[0]           1           1      100.00 
+         12                               tx_valid           1           1      100.00 
+         16                                ADDR[7]           1           1      100.00 
+         16                                ADDR[6]           1           1      100.00 
+         16                                ADDR[5]           1           1      100.00 
+         16                                ADDR[4]           1           1      100.00 
+         16                                ADDR[3]           1           1      100.00 
+         16                                ADDR[2]           1           1      100.00 
+         16                                ADDR[1]           1           1      100.00 
+         16                                ADDR[0]           1           1      100.00 
+
+Total Node Count     =         30 
+Toggled Node Count   =         30 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (60 of 60 bins)
+
+=================================================================================
+=== File: SPI_slave.v
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        51        50         1    98.03%
+
+================================Branch Details================================
+
+Branch Coverage for file SPI_slave.v --
+
+------------------------------------IF Branch------------------------------------
+    27                                     45379     Count coming in to IF
+    27              1                       4989             if (!rst_n) begin
+    30              1                      40390             else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    37                                     98408     Count coming in to CASE
+    38              1                      21014                 IDLE: begin
+    44              1                      15603                 CHK_CMD: begin
+    54              1                      39215                 WRITE, READ_ADD, READ_DATA: begin
+    54              2                      18837     
+    54              3                       3738     
+                                               1     All False Count
+Branch totals: 6 hits of 6 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    39                                     21014     Count coming in to IF
+    39              1                      12033                     if (!SS_n) begin
+                                            8981     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    45                                     15603     Count coming in to IF
+    45              1                        178                     if (SS_n) begin
+    47              1                       9934                     end else if (!MOSI) begin
+    49              1                       5491                     end else begin
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    50                                      5491     Count coming in to IF
+    50              1                        814                         ns = PREV_Read_ADD ? READ_DATA : READ_ADD;
+    50              2                       4677                         ns = PREV_Read_ADD ? READ_DATA : READ_ADD;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    55                                     61790     Count coming in to IF
+    55              1                       8619                     if (SS_n) begin
+                                           53171     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    63                                    127455     Count coming in to IF
+    63              1                       4989             if (!rst_n) begin
+    70              1                     122466             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    71                                    122466     Count coming in to CASE
+    72              1                      11111                     IDLE, CHK_CMD: begin
+    72              2                      10698     
+    89              1                      66118                     WRITE: begin
+    126             1                      28665                     READ_ADD: begin
+    155             1                       5874                     READ_DATA: begin
+                                         ***0***     All False Count
+Branch totals: 5 hits of 6 branches = 83.33%
+
+------------------------------------IF Branch------------------------------------
+    73                                     21809     Count coming in to IF
+    73              1                        351                         if (SS_n) begin 
+    80              1                      21458                         end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    90                                     66118     Count coming in to IF
+    90              1                       5989                         if (SS_n) begin
+    97              1                      60129                         end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    102                                    60129     Count coming in to IF
+    102             1                      59891                             if (counter_1 <= 12) begin
+                                             238     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    105                                    59891     Count coming in to IF
+    105             1                       4966                                 if (counter_1 == 11) begin
+                                           54925     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    127                                    28665     Count coming in to IF
+    127             1                       2083                         if (SS_n) begin
+    133             1                      26582                         end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    137                                    26582     Count coming in to IF
+    137             1                      22274                             if (counter_1 <= 12) begin
+                                            4308     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    140                                    22274     Count coming in to IF
+    140             1                       1789                                  if (counter_1 == 11) begin
+                                           20485     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    156                                     5874     Count coming in to IF
+    156             1                        374                         if (SS_n) begin
+    162             1                       5500                         end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    165                                     5500     Count coming in to IF
+    165             1                       4427                             if (counter_1 < 12) begin
+    176             1                       1073                             end else begin
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    170                                     4427     Count coming in to IF
+    170             1                        400                                 if (counter_1 == 11) begin
+                                            4027     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    177                                     1073     Count coming in to IF
+    177             1                        116                                 if (counter_1 == 13) begin
+                                             957     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    182                                     1073     Count coming in to IF
+    182             1                        840                                 if (counter_1 > 13 && counter_1 < 22) begin
+                                             233     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    187                                     1073     Count coming in to IF
+    187             1                         98                                 if (counter_1 == 21) begin
+                                             975     All False Count
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      10         9         1    90.00%
+
+================================Condition Details================================
+
+Condition Coverage for file SPI_slave.v --
+
+----------------Focused Condition View-------------------
+Line       102 Item    1  (counter_1 <= 12)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 <= 12)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 <= 12)_0   -                             
+  Row   2:          1  (counter_1 <= 12)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       105 Item    1  (counter_1 == 11)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 == 11)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 == 11)_0   -                             
+  Row   2:          1  (counter_1 == 11)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       137 Item    1  (counter_1 <= 12)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 <= 12)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 <= 12)_0   -                             
+  Row   2:          1  (counter_1 <= 12)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       140 Item    1  (counter_1 == 11)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 == 11)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 == 11)_0   -                             
+  Row   2:          1  (counter_1 == 11)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       165 Item    1  (counter_1 < 12)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (counter_1 < 12)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 < 12)_0    -                             
+  Row   2:          1  (counter_1 < 12)_1    -                             
+
+----------------Focused Condition View-------------------
+Line       170 Item    1  (counter_1 == 11)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 == 11)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 == 11)_0   -                             
+  Row   2:          1  (counter_1 == 11)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       177 Item    1  (counter_1 == 13)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 == 13)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 == 13)_0   -                             
+  Row   2:          1  (counter_1 == 13)_1   -                             
+
+----------------Focused Condition View-------------------
+Line       182 Item    1  ((counter_1 > 13) && (counter_1 < 22))
+Condition totals: 1 of 2 input terms covered = 50.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (counter_1 > 13)         Y
+  (counter_1 < 22)         N  '_0' not hit             Hit '_0'
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 > 13)_0    -                             
+  Row   2:          1  (counter_1 > 13)_1    (counter_1 < 22)              
+  Row   3:    ***0***  (counter_1 < 22)_0    (counter_1 > 13)              
+  Row   4:          1  (counter_1 < 22)_1    (counter_1 > 13)              
+
+----------------Focused Condition View-------------------
+Line       187 Item    1  (counter_1 == 21)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+         Input Term   Covered  Reason for no coverage   Hint
+        -----------  --------  -----------------------  --------------
+  (counter_1 == 21)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (counter_1 == 21)_0   -                             
+  Row   2:          1  (counter_1 == 21)_1   -                             
+
+
+FSM Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    FSM States                       5         5         0   100.00%
+    FSM Transitions                  8         8         0   100.00%
+
+================================FSM Details================================
+
+FSM Coverage for file SPI_slave.v --
+
+FSM_ID: cs
+    Current State Object : cs
+    ----------------------
+    State Value MapInfo :
+    ---------------------
+Line          State Name               Value
+----          ----------               -----
+  38                IDLE                   0
+  44             CHK_CMD                   1
+  54            READ_ADD                   3
+  54           READ_DATA                   4
+  54               WRITE                   2
+    Covered States :
+    ----------------
+                   State           Hit_count
+                   -----           ---------
+                    IDLE               13786          
+                 CHK_CMD               10933          
+                READ_ADD                5306          
+               READ_DATA                 962          
+                   WRITE               14392          
+    Covered Transitions :
+    ---------------------
+Line            Trans_ID           Hit_count          Transition          
+----            --------           ---------          ----------          
+  40                   0               10933          IDLE -> CHK_CMD               
+  50                   1                2712          CHK_CMD -> READ_ADD           
+  50                   2                 485          CHK_CMD -> READ_DATA          
+  48                   3                7328          CHK_CMD -> WRITE              
+  46                   4                 408          CHK_CMD -> IDLE               
+  56                   5                2712          READ_ADD -> IDLE              
+  56                   6                 485          READ_DATA -> IDLE             
+  56                   7                7327          WRITE -> IDLE                 
+
+
+    Summary                       Bins      Hits    Misses  Coverage
+    -------                       ----      ----    ------  --------
+        FSM States                   5         5         0   100.00%
+        FSM Transitions              8         8         0   100.00%
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                      72        72         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for file SPI_slave.v --
+
+    1                                                module SPI_SLAVE (
+    2                                                    input           MOSI,
+    3                                                    input           SS_n,
+    4                                                    input           clk,
+    5                                                    input           rst_n,
+    6                                                    input           tx_valid,
+    7                                                    input   [7:0]   tx_data,
+    8                                                
+    9                                                    output reg        MISO,
+    10                                                   output reg        rx_valid,
+    11                                                   output reg [9:0]  rx_data
+    12                                               );
+    13                                                   parameter DATA_WIDTH = 8;
+    14                                                   parameter IDLE      = 3'b000;
+    15                                                   parameter CHK_CMD   = 3'b001;
+    16                                                   parameter WRITE     = 3'b010;
+    17                                                   parameter READ_ADD  = 3'b011;
+    18                                                   parameter READ_DATA = 3'b100;
+    19                                                   
+    20                                                   reg [$clog2(DATA_WIDTH)-1:0]  ns;
+    21                                                   reg [$clog2(DATA_WIDTH)-1:0]  cs;
+    22                                                   reg [DATA_WIDTH+1:0]         shift_reg;
+    23                                                   reg                          PREV_Read_ADD;
+    24                                                   integer                      counter_1;
+    25                                               
+    26              1                      45379         always @(posedge clk or negedge rst_n) begin
+    27                                                       if (!rst_n) begin
+    28              1                       4989                 cs <= IDLE;
+    29                                                       end 
+    30                                                       else begin
+    31              1                      40390                 cs <= ns;
+    32                                                       end
+    33                                                   end
+    34                                               
+    35              1                      98408         always @(*) begin
+    36              1                      98408             ns = cs;
+    37                                                       case (cs)
+    38                                                           IDLE: begin
+    39                                                               if (!SS_n) begin
+    40              1                      12033                         ns = CHK_CMD;
+    41                                                               end
+    42                                                           end
+    43                                                           
+    44                                                           CHK_CMD: begin
+    45                                                               if (SS_n) begin
+    46              1                        178                         ns = IDLE;
+    47                                                               end else if (!MOSI) begin
+    48              1                       9934                         ns = WRITE;
+    49                                                               end else begin
+    50              1                       5491                         ns = PREV_Read_ADD ? READ_DATA : READ_ADD;
+    51                                                               end
+    52                                                           end
+    53                                                           
+    54                                                           WRITE, READ_ADD, READ_DATA: begin
+    55                                                               if (SS_n) begin
+    56              1                       8619                         ns = IDLE;
+    57                                                               end
+    58                                                           end
+    59                                                       endcase
+    60                                                   end
+    61                                               
+    62              1                     127455         always @(posedge clk or negedge rst_n) begin
+    63                                                       if (!rst_n) begin
+    64              1                       4989                 rx_valid      <= 1'b0;
+    65              1                       4989                 rx_data       <= 10'b0;
+    66              1                       4989                 MISO          <= 1'b0;
+    67              1                       4989                 shift_reg     <= 10'b0;
+    68              1                       4989                 PREV_Read_ADD <= 1'b0;
+    69              1                       4989                 counter_1     <= 0;
+    70                                                       end else begin
+    71                                                           case (cs)
+    72                                                               IDLE, CHK_CMD: begin
+    73                                                                   if (SS_n) begin 
+    74              1                        351                             rx_valid      <= 1'b0;
+    75              1                        351                             rx_data       <= 10'b0;
+    76              1                        351                             MISO          <= 1'b0;
+    77              1                        351                             shift_reg     <= 10'b0;
+    78              1                        351                             counter_1     <= 0;
+    79              1                        351                             PREV_Read_ADD <= 1'b0;
+    80                                                                   end else begin
+    81              1                      21458                             rx_valid      <= 1'b0;
+    82              1                      21458                             rx_data       <= 10'b0;
+    83              1                      21458                             MISO          <= 1'b0;
+    84              1                      21458                             shift_reg     <= 10'b0;
+    85              1                      21458                             counter_1     <= counter_1 + 1;
+    86                                                                   end
+    87                                                               end
+    88                                                               
+    89                                                               WRITE: begin
+    90                                                                   if (SS_n) begin
+    91              1                       5989                             rx_valid      <= 1'b0;
+    92              1                       5989                             rx_data       <= 10'b0;
+    93              1                       5989                             MISO          <= 1'b0;
+    94              1                       5989                             shift_reg     <= 10'b0;
+    95              1                       5989                             counter_1     <= 0;
+    96              1                       5989                             PREV_Read_ADD <= 1'b0;
+    97                                                                   end else begin
+    98              1                      60129                             counter_1     <= counter_1 + 1;
+    99              1                      60129                             PREV_Read_ADD <= 1'b0;
+    100             1                      60129                             MISO          <= 1'b0;
+    101                                              
+    102                                                                      if (counter_1 <= 12) begin
+    103             1                      59891                                 shift_reg <= {shift_reg[8:0], MOSI};
+    104                                                                          
+    105                                                                          if (counter_1 == 11) begin
+    106             1                       4966                                     rx_valid <= 1'b1;
+    107             1                       4966                                     rx_data  <= {shift_reg[8:0], MOSI};
+    108                                                                          end
+    109                                                                          
+    110                                                                          // if (counter_1 == 12) begin
+    111                                                                          //     rx_valid  <= 1'b0;
+    112                                                                          //     rx_data   <= 10'b0;
+    113                                                                          //     shift_reg <= 10'b0;
+    114                                                                          //     counter_1 <= 5'b0;
+    115                                                                          // end
+    116                                                                      end 
+    117                                                                      // else begin 
+    118                                                                          // rx_valid  <= 1'b0;
+    119                                                                          // rx_data   <= 10'b0;
+    120                                                                          // shift_reg <= 10'b0;
+    121                                                                          // counter_1 <= 0;
+    122                                                                      // end
+    123                                                                  end
+    124                                                              end
+    125                                                              
+    126                                                              READ_ADD: begin
+    127                                                                  if (SS_n) begin
+    128             1                       2083                             rx_valid      <= 1'b0;
+    129             1                       2083                             rx_data       <= 10'b0;
+    130             1                       2083                             MISO          <= 1'b0;
+    131             1                       2083                             shift_reg     <= 10'b0;
+    132             1                       2083                             counter_1     <= 0;
+    133                                                                  end else begin
+    134             1                      26582                             counter_1 <= counter_1 + 1;
+    135             1                      26582                             MISO      <= 1'b0;
+    136                                              
+    137                                                                      if (counter_1 <= 12) begin
+    138             1                      22274                                  shift_reg <= {shift_reg[8:0], MOSI};
+    139                                                                           
+    140                                                                           if (counter_1 == 11) begin
+    141             1                       1789                                      rx_valid      <= 1'b1;
+    142             1                       1789                                      rx_data       <= {shift_reg[8:0], MOSI};
+    143             1                       1789                                      PREV_Read_ADD <= 1'b1;
+    144                                                                           end
+    145                                                                      end 
+    146                                                                      // else begin
+    147                                                                          // rx_valid  <= 1'b0;
+    148                                                                          // rx_data   <= 10'b0;
+    149                                                                          // shift_reg <= 10'b0;
+    150                                                                          // counter_1 <= 5'b0;
+    151                                                                      // end
+    152                                                                  end
+    153                                                              end
+    154                                              
+    155                                                              READ_DATA: begin
+    156                                                                  if (SS_n) begin
+    157             1                        374                             rx_valid      <= 1'b0;
+    158             1                        374                             rx_data       <= 10'b0;
+    159             1                        374                             MISO          <= 1'b0;
+    160             1                        374                             shift_reg     <= 10'b0;
+    161             1                        374                             counter_1     <= 0;
+    162                                                                  end else begin
+    163             1                       5500                             counter_1 <= counter_1 + 1;
+    164                                                                      
+    165                                                                      if (counter_1 < 12) begin
+    166             1                       4427                                 MISO      <= 1'b0;
+    167             1                       4427                                 rx_valid  <= 1'b0;
+    168             1                       4427                                 shift_reg <= {shift_reg[8:0], MOSI};
+    169                                              
+    170                                                                          if (counter_1 == 11) begin
+    171             1                        400                                     rx_valid      <= 1'b1;
+    172             1                        400                                     rx_data       <= {shift_reg[8:0], MOSI};
+    173             1                        400                                     PREV_Read_ADD <= 1'b0;
+    174                                                                          end
+    175                                                                      
+    176                                                                      end else begin
+    177                                                                          if (counter_1 == 13) begin
+    178             1                        116                                     shift_reg <= {2'b00, tx_data};
+    179             1                        116                                     MISO      <= tx_data[0];
+    180                                                                          end
+    181                                                                          
+    182                                                                          if (counter_1 > 13 && counter_1 < 22) begin
+    183             1                        840                                     MISO      <= shift_reg[0];
+    184             1                        840                                     shift_reg <= {1'b0, shift_reg[9:1]};
+    185                                                                          end
+    186                                              
+    187                                                                          if (counter_1 == 21) begin
+    188             1                         98                                     rx_valid  <= 1'b0;
+    189             1                         98                                     rx_data   <= 10'b0;
+    190             1                         98                                     MISO      <= 1'b0;
+    191             1                         98                                     shift_reg <= 10'b0;
+    192             1                         98                                     counter_1 <= 0;
+    193                                                                          end
+    194                                                                      end
+    195                                                                  end
+    196                                                              end
+    197                                                              
+    198                                                          endcase
+    199                                                      end
+    200                                                  end
+    201                                              
+    202                                              endmodule
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        148        94        54    63.51%
+
+================================Toggle Details================================
+
+Toggle Coverage for File SPI_slave.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+          2                                   MOSI           1           1      100.00 
+          3                                   SS_n           1           1      100.00 
+          4                                    clk           1           1      100.00 
+          5                                  rst_n           1           1      100.00 
+          6                               tx_valid           1           1      100.00 
+          7                             tx_data[7]           1           1      100.00 
+          7                             tx_data[6]           1           1      100.00 
+          7                             tx_data[5]           1           1      100.00 
+          7                             tx_data[4]           1           1      100.00 
+          7                             tx_data[3]           1           1      100.00 
+          7                             tx_data[2]           1           1      100.00 
+          7                             tx_data[1]           1           1      100.00 
+          7                             tx_data[0]           1           1      100.00 
+          9                                   MISO           1           1      100.00 
+         10                               rx_valid           1           1      100.00 
+         11                             rx_data[9]           1           1      100.00 
+         11                             rx_data[8]           1           1      100.00 
+         11                             rx_data[7]           1           1      100.00 
+         11                             rx_data[6]           1           1      100.00 
+         11                             rx_data[5]           1           1      100.00 
+         11                             rx_data[4]           1           1      100.00 
+         11                             rx_data[3]           1           1      100.00 
+         11                             rx_data[2]           1           1      100.00 
+         11                             rx_data[1]           1           1      100.00 
+         11                             rx_data[0]           1           1      100.00 
+         20                                  ns[2]           1           1      100.00 
+         20                                  ns[1]           1           1      100.00 
+         20                                  ns[0]           1           1      100.00 
+         21                                  cs[2]           1           1      100.00 
+         21                                  cs[1]           1           1      100.00 
+         21                                  cs[0]           1           1      100.00 
+         22                           shift_reg[9]           1           1      100.00 
+         22                           shift_reg[8]           1           1      100.00 
+         22                           shift_reg[7]           1           1      100.00 
+         22                           shift_reg[6]           1           1      100.00 
+         22                           shift_reg[5]           1           1      100.00 
+         22                           shift_reg[4]           1           1      100.00 
+         22                           shift_reg[3]           1           1      100.00 
+         22                           shift_reg[2]           1           1      100.00 
+         22                           shift_reg[1]           1           1      100.00 
+         22                           shift_reg[0]           1           1      100.00 
+         23                          PREV_Read_ADD           1           1      100.00 
+         24                           counter_1[9]           0           0        0.00 
+         24                           counter_1[8]           0           0        0.00 
+         24                           counter_1[7]           0           0        0.00 
+         24                           counter_1[6]           0           0        0.00 
+         24                           counter_1[5]           0           0        0.00 
+         24                           counter_1[4]           1           1      100.00 
+         24                           counter_1[3]           1           1      100.00 
+         24                          counter_1[31]           0           0        0.00 
+         24                          counter_1[30]           0           0        0.00 
+         24                           counter_1[2]           1           1      100.00 
+         24                          counter_1[29]           0           0        0.00 
+         24                          counter_1[28]           0           0        0.00 
+         24                          counter_1[27]           0           0        0.00 
+         24                          counter_1[26]           0           0        0.00 
+         24                          counter_1[25]           0           0        0.00 
+         24                          counter_1[24]           0           0        0.00 
+         24                          counter_1[23]           0           0        0.00 
+         24                          counter_1[22]           0           0        0.00 
+         24                          counter_1[21]           0           0        0.00 
+         24                          counter_1[20]           0           0        0.00 
+         24                           counter_1[1]           1           1      100.00 
+         24                          counter_1[19]           0           0        0.00 
+         24                          counter_1[18]           0           0        0.00 
+         24                          counter_1[17]           0           0        0.00 
+         24                          counter_1[16]           0           0        0.00 
+         24                          counter_1[15]           0           0        0.00 
+         24                          counter_1[14]           0           0        0.00 
+         24                          counter_1[13]           0           0        0.00 
+         24                          counter_1[12]           0           0        0.00 
+         24                          counter_1[11]           0           0        0.00 
+         24                          counter_1[10]           0           0        0.00 
+         24                           counter_1[0]           1           1      100.00 
+
+Total Node Count     =         74 
+Toggled Node Count   =         47 
+Untoggled Node Count =         27 
+
+Toggle Coverage      =      63.51% (94 of 148 bins)
+
+=================================================================================
+=== File: SPI_wrapper.v
+=================================================================================
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         50        50         0   100.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for File SPI_wrapper.v --
+
+       Line                                   Node      1H->0L      0L->1H  "Coverage"
+--------------------------------------------------------------------------------------
+          2                                   MOSI           1           1      100.00 
+          3                                   wclk           1           1      100.00 
+          4                                 wrst_n           1           1      100.00 
+          5                                   SS_n           1           1      100.00 
+          6                                   MISO           1           1      100.00 
+         12                                rxvalid           1           1      100.00 
+         13                                txvalid           1           1      100.00 
+         14                              rxdata[9]           1           1      100.00 
+         14                              rxdata[8]           1           1      100.00 
+         14                              rxdata[7]           1           1      100.00 
+         14                              rxdata[6]           1           1      100.00 
+         14                              rxdata[5]           1           1      100.00 
+         14                              rxdata[4]           1           1      100.00 
+         14                              rxdata[3]           1           1      100.00 
+         14                              rxdata[2]           1           1      100.00 
+         14                              rxdata[1]           1           1      100.00 
+         14                              rxdata[0]           1           1      100.00 
+         15                              txdata[7]           1           1      100.00 
+         15                              txdata[6]           1           1      100.00 
+         15                              txdata[5]           1           1      100.00 
+         15                              txdata[4]           1           1      100.00 
+         15                              txdata[3]           1           1      100.00 
+         15                              txdata[2]           1           1      100.00 
+         15                              txdata[1]           1           1      100.00 
+         15                              txdata[0]           1           1      100.00 
+
+Total Node Count     =         25 
+Toggled Node Count   =         25 
+Untoggled Node Count =          0 
+
+Toggle Coverage      =     100.00% (50 of 50 bins)
+
+
+Total Coverage By File (code coverage only, filtered view): 94.28%
+

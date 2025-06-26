@@ -1,0 +1,192 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /spi_coverage_pkg
+=== Design Unit: work.spi_coverage_pkg
+=================================================================================
+
+Covergroup Coverage:
+    Covergroups                      1        na        na    50.00%
+        Coverpoints/Crosses          4        na        na        na
+            Covergroup Bins         20        10        10    50.00%
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /spi_coverage_pkg/spi_coverage/spi_transaction_cg 
+                                                       50.00%        100          -    Uncovered            
+    covered/total bins:                                    10         20          -                      
+    missing/total bins:                                    10         20          -                      
+    % Hit:                                             50.00%        100          -                      
+    Coverpoint reset_cp                                50.00%        100          -    Uncovered            
+        covered/total bins:                                 2          4          -                      
+        missing/total bins:                                 2          4          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint select_slave_cp                         50.00%        100          -    Uncovered            
+        covered/total bins:                                 2          4          -                      
+        missing/total bins:                                 2          4          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint master_out_slave_in_cp                  50.00%        100          -    Uncovered            
+        covered/total bins:                                 3          6          -                      
+        missing/total bins:                                 3          6          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint master_in_slave_out_cp                  50.00%        100          -    Uncovered            
+        covered/total bins:                                 3          6          -                      
+        missing/total bins:                                 3          6          -                      
+        % Hit:                                         50.00%        100          -                      
+ Covergroup instance \/spi_coverage_pkg::spi_coverage::spi_transaction_cg  
+                                                        0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         10          -                      
+    missing/total bins:                                    10         10          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint reset_cp                                 0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          2          -                      
+        missing/total bins:                                 2          2          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin reset_active                                    0          1          -    ZERO                 
+        bin reset_inactive                                  0          1          -    ZERO                 
+    Coverpoint select_slave_cp                          0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          2          -                      
+        missing/total bins:                                 2          2          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin select_slave_active                             0          1          -    ZERO                 
+        bin reset_inactive                                  0          1          -    ZERO                 
+    Coverpoint master_out_slave_in_cp                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          3          -                      
+        missing/total bins:                                 3          3          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin MOSI_one                                        0          1          -    ZERO                 
+        bin MOSI_zero                                       0          1          -    ZERO                 
+        bin write_max_address                               0          1          -    ZERO                 
+    Coverpoint master_in_slave_out_cp                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          3          -                      
+        missing/total bins:                                 3          3          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin MOSI_one                                        0          1          -    ZERO                 
+        bin MOSI_zero                                       0          1          -    ZERO                 
+        bin write_max_address                               0          1          -    ZERO                 
+ Covergroup instance \/spi_coverage_pkg::spi_coverage::spi_transaction_cg#2  
+                                                      100.00%        100          -    Covered              
+    covered/total bins:                                    10         10          -                      
+    missing/total bins:                                     0         10          -                      
+    % Hit:                                            100.00%        100          -                      
+    Coverpoint reset_cp                               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin reset_active                                 2539          1          -    Covered              
+        bin reset_inactive                             122466          1          -    Covered              
+    Coverpoint select_slave_cp                        100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin select_slave_active                        116024          1          -    Covered              
+        bin reset_inactive                               8981          1          -    Covered              
+    Coverpoint master_out_slave_in_cp                 100.00%        100          -    Covered              
+        covered/total bins:                                 3          3          -                      
+        missing/total bins:                                 0          3          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin MOSI_one                                    37370          1          -    Covered              
+        bin MOSI_zero                                   37370          1          -    Covered              
+        bin write_max_address                           11208          1          -    Covered              
+    Coverpoint master_in_slave_out_cp                 100.00%        100          -    Covered              
+        covered/total bins:                                 3          3          -                      
+        missing/total bins:                                 0          3          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin MOSI_one                                      136          1          -    Covered              
+        bin MOSI_zero                                     136          1          -    Covered              
+        bin write_max_address                              52          1          -    Covered              
+
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /spi_coverage_pkg/spi_coverage/spi_transaction_cg 
+                                                       50.00%        100          -    Uncovered            
+    covered/total bins:                                    10         20          -                      
+    missing/total bins:                                    10         20          -                      
+    % Hit:                                             50.00%        100          -                      
+    Coverpoint reset_cp                                50.00%        100          -    Uncovered            
+        covered/total bins:                                 2          4          -                      
+        missing/total bins:                                 2          4          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint select_slave_cp                         50.00%        100          -    Uncovered            
+        covered/total bins:                                 2          4          -                      
+        missing/total bins:                                 2          4          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint master_out_slave_in_cp                  50.00%        100          -    Uncovered            
+        covered/total bins:                                 3          6          -                      
+        missing/total bins:                                 3          6          -                      
+        % Hit:                                         50.00%        100          -                      
+    Coverpoint master_in_slave_out_cp                  50.00%        100          -    Uncovered            
+        covered/total bins:                                 3          6          -                      
+        missing/total bins:                                 3          6          -                      
+        % Hit:                                         50.00%        100          -                      
+ Covergroup instance \/spi_coverage_pkg::spi_coverage::spi_transaction_cg  
+                                                        0.00%        100          -    ZERO                 
+    covered/total bins:                                     0         10          -                      
+    missing/total bins:                                    10         10          -                      
+    % Hit:                                              0.00%        100          -                      
+    Coverpoint reset_cp                                 0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          2          -                      
+        missing/total bins:                                 2          2          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin reset_active                                    0          1          -    ZERO                 
+        bin reset_inactive                                  0          1          -    ZERO                 
+    Coverpoint select_slave_cp                          0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          2          -                      
+        missing/total bins:                                 2          2          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin select_slave_active                             0          1          -    ZERO                 
+        bin reset_inactive                                  0          1          -    ZERO                 
+    Coverpoint master_out_slave_in_cp                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          3          -                      
+        missing/total bins:                                 3          3          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin MOSI_one                                        0          1          -    ZERO                 
+        bin MOSI_zero                                       0          1          -    ZERO                 
+        bin write_max_address                               0          1          -    ZERO                 
+    Coverpoint master_in_slave_out_cp                   0.00%        100          -    ZERO                 
+        covered/total bins:                                 0          3          -                      
+        missing/total bins:                                 3          3          -                      
+        % Hit:                                          0.00%        100          -                      
+        bin MOSI_one                                        0          1          -    ZERO                 
+        bin MOSI_zero                                       0          1          -    ZERO                 
+        bin write_max_address                               0          1          -    ZERO                 
+ Covergroup instance \/spi_coverage_pkg::spi_coverage::spi_transaction_cg#2  
+                                                      100.00%        100          -    Covered              
+    covered/total bins:                                    10         10          -                      
+    missing/total bins:                                     0         10          -                      
+    % Hit:                                            100.00%        100          -                      
+    Coverpoint reset_cp                               100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin reset_active                                 2539          1          -    Covered              
+        bin reset_inactive                             122466          1          -    Covered              
+    Coverpoint select_slave_cp                        100.00%        100          -    Covered              
+        covered/total bins:                                 2          2          -                      
+        missing/total bins:                                 0          2          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin select_slave_active                        116024          1          -    Covered              
+        bin reset_inactive                               8981          1          -    Covered              
+    Coverpoint master_out_slave_in_cp                 100.00%        100          -    Covered              
+        covered/total bins:                                 3          3          -                      
+        missing/total bins:                                 0          3          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin MOSI_one                                    37370          1          -    Covered              
+        bin MOSI_zero                                   37370          1          -    Covered              
+        bin write_max_address                           11208          1          -    Covered              
+    Coverpoint master_in_slave_out_cp                 100.00%        100          -    Covered              
+        covered/total bins:                                 3          3          -                      
+        missing/total bins:                                 0          3          -                      
+        % Hit:                                        100.00%        100          -                      
+        bin MOSI_one                                      136          1          -    Covered              
+        bin MOSI_zero                                     136          1          -    Covered              
+        bin write_max_address                              52          1          -    Covered              
+
+TOTAL COVERGROUP COVERAGE: 50.00%  COVERGROUP TYPES: 1
+
+Total Coverage By Instance (filtered view): 50.00%
+
