@@ -1,2 +1,0 @@
-var g_data = {"10":["work.Monitor",100.00,1],"6":["work.RAM",96.29,1],"5":["work.SPI_SLAVE",91.92,1],"4":["work.SPI_Wrapper",100.00,1],"1":["work.TOP",100.00,1],"9":["work.Wrapper_TB",99.10,1],"8":["work.spi_coverage_pkg",100.00,1],"3":["work.spi_if",20.00,1]};
-processDuLinks(g_data);

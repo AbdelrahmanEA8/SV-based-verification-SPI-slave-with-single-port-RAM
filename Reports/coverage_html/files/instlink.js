@@ -1,2 +1,0 @@
-var g_data = {"12":[11,"MySpi_if",1],"14":[13,"SPI",1],"15":[13,"Ram",1],"13":[11,"DUT",1],"16":[11,"tb",1],"17":[11,"monitor",1],"11":[-1,"TOP",1],"20":[-1,"spi_coverage_pkg",1]};
-processInstLinks(g_data);
